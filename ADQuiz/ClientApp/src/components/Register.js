@@ -16,6 +16,7 @@ class Register extends React.Component {
                 <h2>Register</h2>
                 <Formik
                     initialValues={{
+                        email: '',
                         firstName: '',
                         password: '',
                         confirmPassword: ''
@@ -25,11 +26,11 @@ class Register extends React.Component {
                         password: Yup.string().required('Password is required'),
                         confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
                     })}
-                    onSubmit={({ username, password }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ username, password, email }, { setStatus, setSubmitting }) => {
                         setStatus();
-                        register(username, password)
+                        register(username, password, email)
                             .then(
-                                login(username,password),
+                                login(username,password, email),
                                 error => {
                                     setSubmitting(false);
                                     setStatus(error);
@@ -42,6 +43,11 @@ class Register extends React.Component {
                                 <label htmlFor="username">Username</label>
                                 <Field name="username" type="text" className={'form-control' + (props.errors.username && props.touched.username ? ' is-invalid' : '')} />
                                 <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Email</label>
+                                <Field name="email" type="text" className={'form-control' + (props.errors.username && props.touched.username ? ' is-invalid' : '')} />
+                                <ErrorMessage name="email" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
@@ -72,11 +78,11 @@ class Register extends React.Component {
 function login(username, password) {
     // TODO
 };
-function register(username, password) {
+function register(username, password, email) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify({ username, password, email })
     };
 
     return fetch('/register', requestOptions)
