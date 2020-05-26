@@ -8,7 +8,6 @@ namespace ADQuiz
 {
     public class User : IdentityUser
     {
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
+        
     }
 }
