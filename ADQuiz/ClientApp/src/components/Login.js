@@ -16,7 +16,7 @@ class Login extends React.Component {
                 <h2>Login</h2>
                 <Formik
                     initialValues={{
-                        firstName: '',
+                        username: '',
                         password: ''
                     }}
                     validationSchema={Yup.object().shape({
@@ -62,7 +62,17 @@ class Login extends React.Component {
     }
 }
 function login(username, password) {
-    // TODO
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    };
+
+    return fetch('/login', requestOptions)
+        .then(data => {
+            console.log(data);
+            return data;
+        });
 };
 function register(username, password) {
     const requestOptions = {

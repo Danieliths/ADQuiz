@@ -54,7 +54,7 @@ namespace ADQuiz
         [Route("/login")]
         public async Task<IActionResult> Login([FromBody] LoginModel request)
         {
-            var result = await signInManager.PasswordSignInAsync(request.Email, request.Password, false, false);
+            var result = await signInManager.PasswordSignInAsync(request.UserName, request.Password, false, false);
             if (result.Succeeded)
             {
                 var tokens = antiForgery.GetAndStoreTokens(HttpContext);
