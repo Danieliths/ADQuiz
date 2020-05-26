@@ -79,7 +79,7 @@ function register(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch('account/register', requestOptions)
+    return fetch('/register', requestOptions)
         .then(data => {
             console.log(data);
             return data;
