@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router';
+import { Route, Router  } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Register } from './components/Register';
+import { createBrowserHistory } from 'history';
 import { Login } from './components/Login';
+
 import './custom.css'
+
+export const history = createBrowserHistory();
 
 export default class App extends Component {
   static displayName = App.name;
 
   render () {
     return (
-      <Layout>
+        <Layout>
+            <Router history={history}></Router>
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
             <Route path='/fetch-data' component={FetchData} />
-            <Route path='/register' component={Register} />
+                <Route exact path='/register' component={Register} />
+            
             <Route path='/login' component={Login} />
       </Layout>
     );
