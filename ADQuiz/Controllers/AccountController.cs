@@ -35,7 +35,7 @@ namespace ADQuiz
         [Route("/register")]
         public async Task<IActionResult> RegisterAsync([FromBody]UserRegistrationModel userModel)
         {
-            var result = await userManager.CreateAsync(new User { UserName = userModel.UserName }, userModel.Password);
+            var result = await userManager.CreateAsync(new User { UserName = userModel.UserName, Email = userModel.Email }, userModel.Password);
 
             if(result.Succeeded)
             return Ok();
