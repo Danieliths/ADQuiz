@@ -11,15 +11,29 @@ export class NavMenu extends Component {
 
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
-      collapsed: true
+        collapsed: true,
+        loggedin: ""
     };
   }
-
+    
   toggleNavbar () {
     this.setState({
       collapsed: !this.state.collapsed
     });
   }
+    componentDidMount() {
+        this.timer = setInterval(() => this.getItems(), 1000);
+    }
+
+    componentWillUnmount() {
+        this.timer = null; // here...
+    }
+
+    getItems() {
+        fetch("/loggedin")
+            .then(response => response.status)
+            .then(body => this.setState({ loggedin: body }));
+    }
 
   render () {
     return (
@@ -39,13 +53,19 @@ export class NavMenu extends Component {
                 
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/register">Register</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/register">Register</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
-                            </NavItem>
+                            if (this.state.loggedin == "200") {
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/login">BAJS</NavLink>
+                                </NavItem>
+                            }
+                            
               </ul>
             </Collapse>
           </Container>

@@ -27,7 +27,8 @@ class Login extends React.Component {
                         setStatus();
                         login(username, password)
                             .then(
-                                error => {
+                                    this.props.history.push('/'),
+                                    error => {
                                     setSubmitting(false);
                                     setStatus(error);
                                 }
