@@ -30,7 +30,7 @@ class Register extends React.Component {
                         setStatus();
                         register(username, password, email)
                             .then(
-                                login(username,password, email),
+                                this.props.history.push('/login'),
                                 error => {
                                     setSubmitting(false);
                                     setStatus(error);
