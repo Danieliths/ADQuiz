@@ -1,0 +1,119 @@
+{
+	"info": {
+		"_postman_id": "b2688ece-07ad-483e-affd-923e7e4c76bc",
+		"name": "ASP.NET Identity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Email\":\"hej@hej.com\",\n    \"Password\":\"Secret123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"login"
+					]
+				},
+				"description": "fasd"
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Email\":\"hej@hej.com\",\n    \"Password\":\"Secret123!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"register"
+					]
+				},
+				"description": "fasd"
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForecast",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "CfDJ8P8MxoMCPeZAvCIap9OCHrVQZ5yXZPNIQJdtgnxPnfCRLJQVMN_gReaa6bFFsnQuSxbOGBRudMfuHaktJFrEZ40nvsf78BK4leDOoO-iK2TwkqwYwVIL7xIrhzbrvb-cbR8RRHRoVUz2JadACpqkB5pJG6HIiP1gJD0FcOqPdgoDyT9hCCaOw1xq9fSHqzszEw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44325/api/weatherforecast",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"weatherforecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForecast Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-XSRF-TOKEN",
+						"value": "CfDJ8P8MxoMCPeZAvCIap9OCHrVQZ5yXZPNIQJdtgnxPnfCRLJQVMN_gReaa6bFFsnQuSxbOGBRudMfuHaktJFrEZ40nvsf78BK4leDOoO-iK2TwkqwYwVIL7xIrhzbrvb-cbR8RRHRoVUz2JadACpqkB5pJG6HIiP1gJD0FcOqPdgoDyT9hCCaOw1xq9fSHqzszEw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44325/loggedin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"loggedin"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
