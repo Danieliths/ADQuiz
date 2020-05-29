@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADQuiz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200527125721_Questions")]
-    partial class Questions
+    [Migration("20200529094910_questiontva")]
+    partial class questiontva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,6 +79,12 @@ namespace ADQuiz.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -151,22 +157,6 @@ namespace ADQuiz.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "9a240a99-2971-48e7-a7c2-3c4d99fb1d7d",
-                            ConcurrencyStamp = "d1237030-d8bf-4431-9a94-70834505f215",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "6d6dd990-fc06-4e32-85d6-baa3a6583e0e",
-                            ConcurrencyStamp = "099873f5-f0cb-4996-8817-f017884f671d",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

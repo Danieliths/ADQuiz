@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ADQuiz.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -12,13 +11,14 @@ namespace ADQuiz
     [Route("[controller]")]
     public class QuestionController : Controller
     {
-        private Context context;
-        public QuestionController(Context context)
+        private AppDbContext context;
+        public QuestionController(AppDbContext context)
         {
             this.context = context;
         }
 
-        [HttpPost] 
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
         public IActionResult AddQuestion([FromBody]AddQuestionModel modelQuestion)
         {
             var correctAnswerId = Guid.NewGuid().ToString();

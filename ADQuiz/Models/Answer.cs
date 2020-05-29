@@ -1,4 +1,4 @@
-﻿namespace ADQuiz.Models
+﻿namespace ADQuiz
 {
     public class Answer
     {
