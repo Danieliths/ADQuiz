@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ADQuiz.Migrations
 {
-    [DbContext(typeof(Context))]
+    [DbContext(typeof(AppDbContext))]
     partial class ContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -37,6 +37,12 @@ namespace ADQuiz.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -109,22 +115,6 @@ namespace ADQuiz.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f55618ca-d7ac-4923-925b-c5543480658c",
-                            ConcurrencyStamp = "b92e9265-6f0a-44eb-bab5-c708b5c63a0c",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "20f73189-a6a1-4ea5-8956-74285a7ab895",
-                            ConcurrencyStamp = "5402f7b8-3108-4230-8479-5b05eb421a09",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

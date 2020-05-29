@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 
 namespace ADQuiz
 {
-    public class Context : IdentityDbContext<User>
+    public class AppDbContext : IdentityDbContext<User>
     {
-        public Context(DbContextOptions<Context> options) : base(options)
+        public AppDbContext(DbContextOptions options)
+        : base(options)
         {
-
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
-        
 
     }
 }
