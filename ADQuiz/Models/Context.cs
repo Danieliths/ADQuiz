@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using ADQuiz.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,9 @@ namespace ADQuiz
 
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
-        
+
+        public DbSet<Question> Questions {get; set;}
+        public DbSet<Answer> Answers { get; set; }
 
     }
 }
