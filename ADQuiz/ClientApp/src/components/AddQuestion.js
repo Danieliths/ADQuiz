@@ -5,7 +5,9 @@ import * as Yup from 'yup';
 class AddQuestion extends React.Component {
     constructor(props) {
         super(props);
-
+       
+        
+        
 
     }
     render() {
@@ -15,7 +17,12 @@ class AddQuestion extends React.Component {
                 <Formik
                     initialValues={{
                         difficulty: 'easy',
-                        category: 'games'
+                        category: 'games',
+                        question: '',
+                        correctanswer: '',
+                        wronganswerone: '',
+                        wronganswertwo: '',
+                        wronganswerthree: ''
               
                     }}
                     validationSchema={Yup.object().shape({
@@ -26,11 +33,11 @@ class AddQuestion extends React.Component {
                         wronganswerthree: Yup.string().required('An answer is required'),
                         
                     })}
-                    onSubmit={({ question, correctanswer, wronganswerone, wronganswertwo, wronganswerthree, difficulty, category }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ question, correctanswer, wronganswerone, wronganswertwo, wronganswerthree, difficulty, category }, { setStatus, setSubmitting, resetForm }) => {
                         setStatus();
                         submitQuestion(question, correctanswer, wronganswerone, wronganswertwo, wronganswerthree, difficulty, category)
                             .then(
-                                this.props.history.push('/login'),
+                                resetForm(),
                                 error => {
                                     setSubmitting(false);
                                     setStatus(error);
