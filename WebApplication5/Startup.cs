@@ -10,9 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebApplication5.Models;
 
-namespace WebApplication5
+
+namespace ADQuiz
 {
     public class Startup
     {

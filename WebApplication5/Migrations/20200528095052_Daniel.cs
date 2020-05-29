@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApplication5.Migrations
+namespace ADQuiz
 {
     public partial class Daniel : Migration
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication5
+namespace ADQuiz
 {
     public class WeatherForecast
     {

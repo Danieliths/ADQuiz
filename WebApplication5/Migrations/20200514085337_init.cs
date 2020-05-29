@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApplication5.Migrations
+namespace ADQuiz
 {
     public partial class init : Migration
     {

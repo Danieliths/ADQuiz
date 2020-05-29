@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WebApplication5.Controllers
+namespace ADQuiz
 {
     [ApiController]
     public class WeatherForecastController : Controller

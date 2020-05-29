@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication5.Models.HTTP
+namespace ADQuiz
 {
     public class LoginRequest
     {

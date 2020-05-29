@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication5.Models
+namespace ADQuiz
 {
     public class AppDbContext : IdentityDbContext<User>
     {

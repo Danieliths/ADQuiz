@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj": {}
+    "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\WebApplication5.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj": {
+    "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\WebApplication5.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj",
+        "projectUniqueName": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\WebApplication5.csproj",
         "projectName": "WebApplication5",
-        "projectPath": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj",
+        "projectPath": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\WebApplication5.csproj",
         "packagesPath": "C:\\Users\\Daniel Andersson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\obj\\",
+        "outputPath": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

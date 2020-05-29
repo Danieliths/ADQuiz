@@ -8623,11 +8623,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj",
-      "projectName": "WebApplication5",
-      "projectPath": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\WebApplication5.csproj",
+      "projectUniqueName": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\ADQuiz.csproj",
+      "projectName": "ADQuiz",
+      "projectPath": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\ADQuiz.csproj",
       "packagesPath": "C:\\Users\\Daniel Andersson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Daniel Andersson\\Desktop\\Pontus2\\ReactAndIdentity\\WebApplication5\\obj\\",
+      "outputPath": "C:\\Users\\Daniel Andersson\\source\\repos\\ADQuiz\\ADQuiz\\WebApplication5\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

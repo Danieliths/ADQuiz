@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication5.Models;
 
-namespace WebApplication5.Migrations
+
+namespace ADQuiz
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20200528095052_Daniel")]
