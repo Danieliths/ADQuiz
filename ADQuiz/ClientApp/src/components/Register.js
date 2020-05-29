@@ -20,7 +20,7 @@ class Register extends React.Component {
                         firstName: '',
                         password: '',
                         confirmPassword: '',
-                        role: ''
+                        role: 'User'
                     }}
                     validationSchema={Yup.object().shape({
                         username: Yup.string().required('Username is required'),
