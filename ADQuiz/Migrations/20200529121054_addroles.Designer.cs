@@ -4,14 +4,16 @@ using ADQuiz;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ADQuiz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20200529121054_addroles")]
+    partial class addroles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

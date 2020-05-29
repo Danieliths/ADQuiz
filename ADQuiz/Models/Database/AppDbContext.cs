@@ -18,7 +18,7 @@ namespace ADQuiz
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
         public DbSet<Question> Questions {get; set;}

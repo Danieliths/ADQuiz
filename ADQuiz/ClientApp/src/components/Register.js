@@ -19,16 +19,17 @@ class Register extends React.Component {
                         email: '',
                         firstName: '',
                         password: '',
-                        confirmPassword: ''
+                        confirmPassword: '',
+                        role: ''
                     }}
                     validationSchema={Yup.object().shape({
                         username: Yup.string().required('Username is required'),
                         password: Yup.string().required('Password is required'),
                         confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
                     })}
-                    onSubmit={({ username, password, email }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ username, password, email, role }, { setStatus, setSubmitting }) => {
                         setStatus();
-                        register(username, password, email)
+                        register(username, password, email, role)
                             .then(
                                 this.props.history.push('/login'),
                                 error => {
@@ -59,6 +60,12 @@ class Register extends React.Component {
                                 <Field name="confirmPassword" type="password" className={'form-control' + (props.errors.confirmPassword && props.touched.confirmPassword ? ' is-invalid' : '')} />
                                 <ErrorMessage name="confirmPassword" component="div" className="invalid-feedback" />
                             </div>
+                            <div>
+                                <Field as="select" name="role">
+                                    <option value="User">User</option>
+                                    <option value="Administrator">Administrator</option>
+                                </Field>
+                            </div>
                             <div className="form-group">
                                 <button type="submit" className="btn btn-primary" disabled={props.isSubmitting}>Register</button>
                                 {props.isSubmitting &&
@@ -78,11 +85,11 @@ class Register extends React.Component {
 function login(username, password) {
     // TODO
 };
-function register(username, password, email) {
+function register(username, password, email, role) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, email })
+        body: JSON.stringify({ username, password, email, role })
     };
 
     return fetch('/register', requestOptions)
