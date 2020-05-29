@@ -1,55 +1,70 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ADQuiz.Models;
-using AutoMapper;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
+
 
 namespace ADQuiz
 {
     [ApiController]
-    [Route("controller")]
     public class AccountController : Controller
     {
-        public AccountController(IMapper autoMapper, Context context, SignInManager<User> signInManager, IAntiforgery antiForgery, UserManager<User> userManager)
+        private UserManager<User> userManager;
+        private SignInManager<User> signInManager;
+        private IAntiforgery antiForgery;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IAntiforgery antiForgery)
         {
-            this.autoMapper = autoMapper;
-            this.context = context;
+            this.userManager = userManager;
             this.signInManager = signInManager;
             this.antiForgery = antiForgery;
-            this.userManager = userManager;
         }
-
-        private readonly IMapper autoMapper;
-        private readonly Context context;
-        private readonly SignInManager<User> signInManager;
-        private readonly IAntiforgery antiForgery;
-        private readonly UserManager<User> userManager;
 
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        [Route("/register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]UserRegistrationModel userModel)
+        [Route("/login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var result = await userManager.CreateAsync(new User { UserName = userModel.UserName, Email = userModel.Email }, userModel.Password);
-
-            if(result.Succeeded)
-            return Ok();
-
-            foreach (var error in result.Errors)
+            var result = await signInManager.PasswordSignInAsync(request.Email, request.Password, false, false);
+            if (result.Succeeded)
             {
-                if(error.Code.Equals("409") )
+                var tokens = antiForgery.GetAndStoreTokens(HttpContext);
+                Response.Cookies.Append("XSRF-REQUEST-TOKEN", tokens.RequestToken, new Microsoft.AspNetCore.Http.CookieOptions
                 {
-                    return Conflict(error.Description);
-                }
+                    HttpOnly = false
+                });
+                return Ok();
             }
             return BadRequest();
         }
 
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
+        [Route("/register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {
+            var result = await userManager.CreateAsync(new User { UserName = request.Email }, request.Password);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpGet]
+        [IgnoreAntiforgeryToken]
+        [Route("/loggedin")]
+        public IActionResult Status()
+        {
+            if (User.Identity.IsAuthenticated)
+                return Ok();
+
+            return Unauthorized();
+        }
     }
 }
-

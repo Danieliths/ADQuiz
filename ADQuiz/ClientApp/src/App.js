@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Register } from './components/Register';
+import { Login } from './components/Login';
 import { createBrowserHistory } from 'history';
 import { AddQuestion } from './components/AddQuestion';
 
@@ -26,6 +27,7 @@ export default class App extends Component {
         <Route exact path='/register' component={Register} />
         <Route exact path='/addquestion' component={AddQuestion} />
             
+            <Route path='/login' component={Login} />
       </Layout>
     );
   }

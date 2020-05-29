@@ -1,13 +1,16 @@
-using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 
 namespace ADQuiz
 {
@@ -23,26 +26,20 @@ namespace ADQuiz
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
-            var connectionString = this.Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<Context>(options =>
-            {
-                options.UseSqlServer(connectionString);
-                options.UseLazyLoadingProxies();
-            });
-            services.AddIdentity<User, IdentityRole>(opt =>
-            {
-                opt.Password.RequiredLength = 7;
-                opt.Password.RequireDigit = false;
-                opt.Password.RequireUppercase = true;
-                opt.User.RequireUniqueEmail = true;
-            })
-            .AddEntityFrameworkStores<Context>();
-            services.AddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory<User, IdentityRole>>();
-            services.AddScoped<IUserClaimsPrincipalFactory<User>, CustomClaimsFactory>();
-            services.AddControllersWithViews();
+            services.AddDbContext<AppDbContext>(opts =>
+                opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
-            // In production, the React files will be served from this directory
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddControllersWithViews();
+            services.AddMvc(options => {
+                options.Filters.Add(new ValidateAntiForgeryTokenAttribute());
+            });
+
+            services.AddAntiforgery(antiforgeryOptions => {
+                antiforgeryOptions.HeaderName = "X-XSRF-TOKEN";
+            });
+            services.AddCors();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
@@ -64,11 +61,17 @@ namespace ADQuiz
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(configurePolicy => {
+                configurePolicy.AllowAnyHeader();
+                configurePolicy.AllowAnyMethod();
+                configurePolicy.AllowCredentials();
+            });
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
