@@ -25,7 +25,7 @@ class Login extends React.Component {
                     })}
                     onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
                         setStatus();
-                        login(email, password)
+                        test(email, password)
                             .then(
                                 this.props.history.push('/'),
                                 error => {
@@ -62,6 +62,10 @@ class Login extends React.Component {
         )
     }
 }
+function test(email, password){
+    login(email, password);
+    loggedin();
+};
 function login(email, password) {
     const requestOptions = {
         method: 'POST',
@@ -70,6 +74,19 @@ function login(email, password) {
     };
 
     return fetch('/login', requestOptions)
+        .then(data => {
+            console.log(data);
+            return data;
+        });
+};
+// loggedin verkar fungera när jag kör den tillsammans med test men tror eventuellt att den svarar 200 pga att det redan var en användare inne
+function loggedin() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    return fetch('/loggedin', requestOptions)
         .then(data => {
             console.log(data);
             return data;
