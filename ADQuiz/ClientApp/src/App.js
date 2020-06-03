@@ -8,6 +8,7 @@ import { Register } from './components/Register';
 import { Login } from './components/Login';
 import { createBrowserHistory } from 'history';
 import { AddQuestion } from './components/AddQuestion';
+import { Quiz } from './components/Quiz';
 
 
 import './custom.css'
@@ -26,6 +27,7 @@ export default class App extends Component {
         <Route path='/fetch-data' component={FetchData} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/addquestion' component={AddQuestion} />
+        <Route exact path='/quiz' component={Quiz} />
             
             <Route path='/login' component={Login} />
       </Layout>
