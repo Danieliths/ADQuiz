@@ -12,8 +12,10 @@ export class NavMenu extends Component {
 
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
-            collapsed: true
+            collapsed: true,
+            isLoggedin: false
         };
+        this.loggedin = this.loggedin.bind(this);
     }
     componentDidMount() {
         //this.login();
@@ -23,9 +25,13 @@ export class NavMenu extends Component {
             collapsed: !this.state.collapsed
         });
     }
-
+    
     render() {
+        let contents = this.state.loggedin
+            ? <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
+            : <button onClick={this.logout}>Logout</button>
         return (
+            
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
                     <Container>
@@ -46,8 +52,11 @@ export class NavMenu extends Component {
                                     <NavLink tag={Link} className="text-dark" to="/register">Register</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
-                                </NavItem>
+                                {contents}
+                            </NavItem>
+                            
+                                <button onClick={this.loggedin}>TestLoggedin</button>
+                            
                             </ul>
                         </Collapse>
                     </Container>
@@ -83,4 +92,37 @@ export class NavMenu extends Component {
             //this.setState({ apiResponse.body });
         }
     }
+    logout() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        };
+
+        return fetch('/logout', requestOptions)
+            .then(data => {
+                console.log(data);
+                if (data.ok) {
+                    this.setState({ isLoggedin: false })
+                }
+                return data;
+            });
+    };
+loggedin() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    return fetch('/loggedin', requestOptions)
+        .then(data => {
+            console.log(data);
+            if (data.status.) {
+                this.setState({ isLoggedin: true})
+            }
+            else {
+                this.setState({ isLoggedin:false})
+            }
+            return data;
+        });
+};
 }

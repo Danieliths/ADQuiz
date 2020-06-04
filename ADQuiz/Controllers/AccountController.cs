@@ -57,7 +57,14 @@ namespace ADQuiz
             }
             return BadRequest();
         }
-
+        [HttpPost]
+        [IgnoreAntiforgeryToken]
+        [Route("/logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return Ok();
+        }
         [HttpGet]
         [IgnoreAntiforgeryToken]
         [Route("/loggedin")]

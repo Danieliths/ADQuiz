@@ -12,7 +12,8 @@ export class Home extends Component {
             <div>
                 <NavItem>
                     <NavLink tag={Link} className="text-dark" to="/addquestion">Add Question</NavLink>
-                    </NavItem>
+                </NavItem>
+                <button onClick={loggedin}>LoggedinTest</button>
         </div>
         <p>Welcome to your new single-page application, built with:</p>
         <ul>
@@ -31,3 +32,15 @@ export class Home extends Component {
     );
   }
 }
+function loggedin() {
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+    };
+
+    return fetch('/loggedin', requestOptions)
+        .then(data => {
+            console.log(data);
+            return data;
+        });
+};
