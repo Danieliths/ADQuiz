@@ -3,11 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { login } from '../Helpers'
 
-
 class Login extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
             <div>

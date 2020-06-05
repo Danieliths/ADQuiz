@@ -14,7 +14,9 @@ export class Quiz extends Component {
             score: 0,
             IsAnswered: false,
             buttonColors: ["secondary", "secondary", "secondary", "secondary"],
-            startQuiz: false
+            startQuiz: false,
+            currentUser: null,
+            userIsAdmin: false
         }
     }
 
@@ -43,9 +45,6 @@ export class Quiz extends Component {
                     </Card>
             </div>
         }
-        
-           
-
         return (
             <div>
                 <h1 id="tabelLabel" >Questions</h1>
@@ -91,7 +90,7 @@ export class Quiz extends Component {
     async CheckAnswer(questionId, answerId, buttonIndex) {
         let result = await fetch('/question/' + questionId).then((response) => response.json());
         let newButtonColors = this.state.buttonColors;
-        if (result.correctAnswer == answerId) {
+        if (result.correctAnswer === answerId) {
             newButtonColors[buttonIndex] = "success"
             this.setState({ score: this.state.score + 1, buttonColors: newButtonColors })
 
