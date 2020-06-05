@@ -57,6 +57,19 @@ namespace ADQuiz
             }
             return BadRequest();
         }
+
+        [HttpGet]
+        [IgnoreAntiforgeryToken]
+        [Route("/isAdmin")]
+        public IActionResult IsAdmin()
+        {
+            if (User.IsInRole("Administrator"))
+            {
+                return Ok(new { success = true });
+            }
+            return Ok(new { success = false });
+        }
+
         [HttpGet]
         [IgnoreAntiforgeryToken]
         [Route("/logout")]

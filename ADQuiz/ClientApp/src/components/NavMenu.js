@@ -4,7 +4,7 @@ import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLi
 import { Link } from 'react-router-dom';
 
 import './NavMenu.css';
-import { authenticationService, logout } from '../Helpers'
+import { authenticationService, logout, isAdmin } from '../Helpers'
 
 export class NavMenu extends Component {
     static displayName = NavMenu.name;
@@ -17,11 +17,14 @@ export class NavMenu extends Component {
             
             collapsed: true,
             currentUser: null,
+            userIsAdmin: false
         };
     }
     componentDidMount() {
        
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
+        authenticationService.userIsAdmin.subscribe(x => this.setState({ userIsAdmin: x }));
+        this.setState({ userIsAdmin: isAdmin() })
     }
     toggleNavbar() {
         this.setState({
@@ -31,7 +34,7 @@ export class NavMenu extends Component {
     
     render() {
         const { currentUser } = this.state;
-        
+        const { userIsAdmin } = this.state;
         return (
             
             <header>
@@ -50,8 +53,11 @@ export class NavMenu extends Component {
                                 <NavItem>
                                     <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                                 </NavItem>
-                                
-                                
+                                {userIsAdmin &&
+                                    <NavItem>
+                                        <NavLink tag={Link} className="text-dark" to="/addquestion">Add Question</NavLink>
+                                    </NavItem>
+                                }
                                 {currentUser &&
                                     <Link onClick={logout} to="/" className="text-dark nav-link">Logout</Link>
                                 }

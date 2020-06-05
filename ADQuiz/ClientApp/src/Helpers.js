@@ -2,10 +2,12 @@
 
 
 const currentUserSubject = new BehaviorSubject(getCookie('XSRF-REQUEST-TOKEN'));
-
+const userIsAdminSubject = new BehaviorSubject(isAdmin());
 
 export const authenticationService = {
     currentUser: currentUserSubject.asObservable(),
+    userIsAdmin: userIsAdminSubject.asObservable(),
+    get userIsAdminValue() { return userIsAdminSubject.value },
     get currentUserValue() { return currentUserSubject.value }
 };
 
@@ -42,6 +44,13 @@ export function checkCookie() {
         }
     }
 }
+export function isAdmin() {
+    fetch("/isAdmin")
+        .then(handleResponse)
+        .then(Response => {
+            userIsAdminSubject.next(Response.success);
+        });
+}
 export function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
@@ -64,6 +73,7 @@ export function login(email, password) {
     return fetch('/login', requestOptions)
         .then(data => {
             console.log(data);
+            isAdmin();
             currentUserSubject.next(getCookie('XSRF-REQUEST-TOKEN'));
             return data;
         });
@@ -91,7 +101,7 @@ export function logout() {
                         .replace(/^ +/, "")
                         .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
                 });
-
+            userIsAdminSubject.next(false);
             currentUserSubject.next(null);
         })
         .catch(error => console.log(error));
