@@ -22,7 +22,7 @@ export default class App extends Component {
     return (
         <Layout>
         <Router history={history}></Router>
-        <Route exact path='/' component={Home} />
+        <Route exact path='/' component={Quiz} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
         <Route exact path='/login' component={Login} />

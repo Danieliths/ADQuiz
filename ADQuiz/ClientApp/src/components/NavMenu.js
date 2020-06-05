@@ -40,26 +40,23 @@ export class NavMenu extends Component {
             <header>
                 <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
                     <Container>
-                        <NavbarBrand tag={Link} to="/">WebApplication5</NavbarBrand>
+                        <NavbarBrand tag={Link} to="/">ADQuiz</NavbarBrand>
                         <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
-                                </NavItem>
+                                
                                 {userIsAdmin &&
                                     <NavItem>
                                         <NavLink tag={Link} className="text-dark" to="/addquestion">Add Question</NavLink>
                                     </NavItem>
                                 }
                                 {currentUser &&
-                                    <Link onClick={logout} to="/" className="text-dark nav-link">Logout</Link>
+                                    <React.Fragment>
+                                        <NavItem>
+                                            <NavLink tag={Link} className="text-dark" to="/quiz">Quiz</NavLink>
+                                        </NavItem>
+                                        <Link onClick={logout} to="/" className="text-dark nav-link">Logout</Link>
+                                    </React.Fragment>
                                 }
                                 {!currentUser &&
                                     <React.Fragment>
@@ -71,9 +68,7 @@ export class NavMenu extends Component {
                                     </NavItem>
                                     </React.Fragment>
                                 }
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-dark" to="/quiz">Quiz</NavLink>
-                                </NavItem>
+                                
                             </ul>
                         </Collapse>
                     </Container>
