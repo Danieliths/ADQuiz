@@ -1,4 +1,15 @@
-﻿export function setCookie(cname, cvalue, exdays) {
+﻿import { BehaviorSubject } from 'rxjs';
+
+
+const currentUserSubject = new BehaviorSubject(getCookie('XSRF-REQUEST-TOKEN'));
+
+
+export const authenticationService = {
+    currentUser: currentUserSubject.asObservable(),
+    get currentUserValue() { return currentUserSubject.value }
+};
+
+export function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires=" + d.toUTCString();
@@ -35,11 +46,6 @@ export function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
-            //if ([401, 403].indexOf(response.status) !== -1) {
-            //    // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
-            //    authenticationService.logout();
-            //    window.location.reload(true);
-            //}
 
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
@@ -47,4 +53,46 @@ export function handleResponse(response) {
 
         return data;
     });
+}
+export function login(email, password) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    };
+
+    return fetch('/login', requestOptions)
+        .then(data => {
+            console.log(data);
+            currentUserSubject.next(getCookie('XSRF-REQUEST-TOKEN'));
+            return data;
+        });
+};
+export function logout() {
+
+    let XSRF = getCookie('XSRF-REQUEST-TOKEN');
+
+    let fetchConfig = {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'X-XSRF-TOKEN': XSRF
+        }
+    };
+    fetch("/logout", fetchConfig)
+        .then(handleResponse)
+        .then(() => {
+            document.cookie.split(";")
+
+                .forEach(function (c) {
+                    document.cookie = c
+                        .replace(/^ +/, "")
+                        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+                });
+
+            currentUserSubject.next(null);
+        })
+        .catch(error => console.log(error));
 }

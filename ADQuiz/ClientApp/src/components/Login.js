@@ -1,16 +1,14 @@
 ﻿import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { login } from '../Helpers'
 
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        //this.loggedin = this.loggedin.bind(this);
     }
     render() {
-        //console.log("parentpropLogin = " + this.props.parentIsLoggedIn)
         return (
             <div>
                 <h2>Login</h2>
@@ -32,7 +30,7 @@ class Login extends React.Component {
                                     setSubmitting(false);
                                     setStatus(error);
                                 }
-                        ).then(/*(Response) => { this.loggedin()}*/
+                        ).then(
                         );
                     }}>
                     {props => (
@@ -61,65 +59,8 @@ class Login extends React.Component {
                 </Formik>
 
             </div>
-                        
-
-
         )
-        
-
     }
-    //loggedin() {
-    //    const requestOptions = {
-    //        method: 'GET',
-    //        headers: { 'Content-Type': 'application/json' },
-    //    };
-
-    //    return fetch('/loggedin', requestOptions)
-    //        .then(data => {
-    //            console.log(data);
-    //            if (data.ok) {
-    //                this.props.parentCallbackChangeLoggedin(true)
-    //                console.log("precis bytat till true " + this.props.parentIsLoggedIn)
-    //            }
-    //            else if (!data.ok) {
-    //                this.props.parentCallbackChangeLoggedin(false)
-    //                console.log("precis bytat till false " + this.props.parentIsLoggedIn)
-    //            }
-
-    //            console.log("har varken bytat eller " + this.props.parentIsLoggedIn)
-    //            return data;
-    //        });
-    //};
-    
 };
 
-function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
-
-    return fetch('/login', requestOptions)
-        .then(data => {
-            console.log(data);
-            return data;
-        });
-};
-
-
-
-function register(username, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
-    };
-
-    return fetch('/register', requestOptions)
-        .then(data => {
-            console.log(data);
-            return data;
-        });
-}
 export { Login };

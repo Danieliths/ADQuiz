@@ -13,11 +13,6 @@ import { AddQuestion } from './components/AddQuestion';
 import './custom.css'
 
 export const history = createBrowserHistory();
-const routes = [
-    {
-    path: '/login',
-    component: Login
-}]
 export default class App extends Component {
   static displayName = App.name;
 
@@ -28,15 +23,9 @@ export default class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
+        <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
-            <Route exact path='/addquestion' component={AddQuestion} />
-            {routes.map(({ path, component: C }) => (
-                <Route
-                    path={path}
-                    render={(props) => <C {...props} />}
-                />
-            ))}
-                
+        <Route exact path='/addquestion' component={AddQuestion} />
       </Layout>
     );
   }
