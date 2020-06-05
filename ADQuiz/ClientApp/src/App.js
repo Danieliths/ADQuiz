@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Route, Router  } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
@@ -13,7 +13,11 @@ import { AddQuestion } from './components/AddQuestion';
 import './custom.css'
 
 export const history = createBrowserHistory();
-
+const routes = [
+    {
+    path: '/login',
+    component: Login
+}]
 export default class App extends Component {
   static displayName = App.name;
 
@@ -25,9 +29,14 @@ export default class App extends Component {
         <Route path='/counter' component={Counter} />
         <Route path='/fetch-data' component={FetchData} />
         <Route exact path='/register' component={Register} />
-        <Route exact path='/addquestion' component={AddQuestion} />
-            
-            <Route path='/login' component={Login} />
+            <Route exact path='/addquestion' component={AddQuestion} />
+            {routes.map(({ path, component: C }) => (
+                <Route
+                    path={path}
+                    render={(props) => <C {...props} />}
+                />
+            ))}
+                
       </Layout>
     );
   }

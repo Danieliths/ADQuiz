@@ -7,10 +7,10 @@ import * as Yup from 'yup';
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
-
+        //this.loggedin = this.loggedin.bind(this);
     }
     render() {
+        //console.log("parentpropLogin = " + this.props.parentIsLoggedIn)
         return (
             <div>
                 <h2>Login</h2>
@@ -23,16 +23,17 @@ class Login extends React.Component {
                         email: Yup.string().required('Email is required'),
                         password: Yup.string().required('Password is required')
                     })}
-                    onSubmit={({ email, password }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ email, password }, { setStatus, setSubmitting}) => {
                         setStatus();
-                        test(email, password)
+                        login(email, password)
                             .then(
                                 this.props.history.push('/'),
                                 error => {
                                     setSubmitting(false);
                                     setStatus(error);
                                 }
-                            );
+                        ).then(/*(Response) => { this.loggedin()}*/
+                        );
                     }}>
                     {props => (
                         <Form>
@@ -58,14 +59,40 @@ class Login extends React.Component {
                         </Form>
                     )}
                 </Formik>
+
             </div>
+                        
+
+
         )
+        
+
     }
-}
-function test(email, password){
-    login(email, password);
-    loggedin();
+    //loggedin() {
+    //    const requestOptions = {
+    //        method: 'GET',
+    //        headers: { 'Content-Type': 'application/json' },
+    //    };
+
+    //    return fetch('/loggedin', requestOptions)
+    //        .then(data => {
+    //            console.log(data);
+    //            if (data.ok) {
+    //                this.props.parentCallbackChangeLoggedin(true)
+    //                console.log("precis bytat till true " + this.props.parentIsLoggedIn)
+    //            }
+    //            else if (!data.ok) {
+    //                this.props.parentCallbackChangeLoggedin(false)
+    //                console.log("precis bytat till false " + this.props.parentIsLoggedIn)
+    //            }
+
+    //            console.log("har varken bytat eller " + this.props.parentIsLoggedIn)
+    //            return data;
+    //        });
+    //};
+    
 };
+
 function login(email, password) {
     const requestOptions = {
         method: 'POST',
@@ -79,19 +106,9 @@ function login(email, password) {
             return data;
         });
 };
-// loggedin verkar fungera när jag kör den tillsammans med test men tror eventuellt att den svarar 200 pga att det redan var en användare inne
-function loggedin() {
-    const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-    };
 
-    return fetch('/loggedin', requestOptions)
-        .then(data => {
-            console.log(data);
-            return data;
-        });
-};
+
+
 function register(username, password) {
     const requestOptions = {
         method: 'POST',

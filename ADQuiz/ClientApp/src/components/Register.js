@@ -82,9 +82,7 @@ class Register extends React.Component {
         )
     }
 }
-function login(username, password) {
-    // TODO
-};
+
 function register(username, password, email, role) {
     const requestOptions = {
         method: 'POST',

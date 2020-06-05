@@ -4,12 +4,15 @@ import { NavMenu } from './NavMenu';
 
 export class Layout extends Component {
   static displayName = Layout.name;
-
+    state = { isLoggedin: false }
+    callbackLoggedin = (isLoggedinChange) => {
+        this.setState({ isLoggedin: isLoggedinChange })
+    }
   render () {
     return (
       <div>
-        <NavMenu />
-        <Container>
+            <NavMenu parentIsLoggedIn={this.state.isLoggedin} parentCallbackChangeLoggedin={this.callbackLoggedin} />
+            <Container>
           {this.props.children}
         </Container>
       </div>
