@@ -10,5 +10,6 @@ namespace ADQuiz
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int HighScore { get; set; }
     }
 }

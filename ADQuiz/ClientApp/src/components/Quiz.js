@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Jumbotron, Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Button, Card, CardText, CardTitle } from 'reactstrap';
 
 export class Quiz extends Component {
     constructor(props) {
@@ -13,7 +13,8 @@ export class Quiz extends Component {
             questionIndex: 0,
             score: 0,
             IsAnswered: false,
-            buttonColors: ["secondary", "secondary", "secondary", "secondary"]
+            buttonColors: ["secondary", "secondary", "secondary", "secondary"],
+            startQuiz: false
         }
     }
 
@@ -23,17 +24,22 @@ export class Quiz extends Component {
 
     render() {
         let contents = "";
-        if (this.state.loading) {
-            contents = <p><em>Loading...</em></p>;
+        if (!this.state.startQuiz) {
+            contents = <div className="text-center">
+                <Card body inverse color="info">
+                    <CardTitle><h1>Are You Ready To Quiz?</h1></CardTitle>
+                    <CardText><Button color="success" onClick={() => { this.setState({ startQuiz: true }) }}>Start Quiz!</Button></CardText>
+                </Card>
+            </div>;
         }
         else if (this.state.questionIndex < this.state.questions.length) {
             contents = this.renderQuestions(this.state.questions, this.state.questionIndex)
         }
         else if (this.state.questionIndex >= this.state.questions.length) {
             contents = <div className="text-center">
-                <Card body inverse color="info">
+                <Card  body inverse color="info">
                     <CardTitle><h1>Your score is: {this.state.score}</h1></CardTitle>
-                    <CardText><button onClick={() => this.SubmitScore()}>Submit score</button></CardText>
+                    <CardText><Button  color="success" onClick={() => this.SubmitScore(this.state.score)}>Submit score</Button></CardText>
                     </Card>
             </div>
         }
@@ -50,26 +56,26 @@ export class Quiz extends Component {
 
     renderQuestions(questions, index) {
        return (
-           <div className="text-center">
-               <Card body inverse color="info">
+           <div className="text-center ">
+               <Card className="mx-auto" body inverse color="info">
                    <CardTitle><h3>Category: {questions[index].category}</h3></CardTitle>
-                   <CardText>{questions[index].questionText}</CardText>
-                   {questions[index].answers.map((answer, answersIndex) => <Button disabled={this.state.IsAnswered} color={this.state.buttonColors[answersIndex]} onClick={() => this.CheckAnswer(questions[index].id, answer.id, answersIndex)} >{answer.answerText}</Button>)}
-                   <Button color="primary" disabled={!this.state.IsAnswered} onClick={() => this.RenderNextQuestion()}>Next Question</Button>
+                   <CardText >{questions[index].questionText}</CardText>
+                   {questions[index].answers.map((answer, answersIndex) => <Button className="mb-1 w-50 mx-auto" disabled={this.state.IsAnswered} color={this.state.buttonColors[answersIndex]} onClick={() => this.CheckAnswer(questions[index].id, answer.id, answersIndex)} >{answer.answerText}</Button>)}
+                   <Button className="mb-1 w-50 mx-auto" color="primary" disabled={!this.state.IsAnswered} onClick={() => this.RenderNextQuestion()}>Next Question</Button>
                </Card>
            </div>
 
        );
     }
 
-    async SubmitScore() {
+    async SubmitScore(score) {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ this.state.score })
+            body: JSON.stringify({ score })
         };
 
-        return fetch('/login', requestOptions)
+        return fetch('/highscore', requestOptions)
             .then(data => {
                 console.log(data);
                 return data;
