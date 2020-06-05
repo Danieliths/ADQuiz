@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+
+import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
 import './NavMenu.css';
 import { authenticationService, logout } from '../Helpers'
 
@@ -12,11 +14,13 @@ export class NavMenu extends Component {
 
         this.toggleNavbar = this.toggleNavbar.bind(this);
         this.state = {
+            
             collapsed: true,
             currentUser: null,
         };
     }
     componentDidMount() {
+       
         authenticationService.currentUser.subscribe(x => this.setState({ currentUser: x }));
     }
     toggleNavbar() {
@@ -47,6 +51,7 @@ export class NavMenu extends Component {
                                     <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
                                 </NavItem>
                                 
+                                
                                 {currentUser &&
                                     <Link onClick={logout} to="/" className="text-dark nav-link">Logout</Link>
                                 }
@@ -60,6 +65,9 @@ export class NavMenu extends Component {
                                     </NavItem>
                                     </React.Fragment>
                                 }
+                                <NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/quiz">Quiz</NavLink>
+                                </NavItem>
                             </ul>
                         </Collapse>
                     </Container>
@@ -67,4 +75,5 @@ export class NavMenu extends Component {
             </header>
         );
     }
+
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADQuiz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200526112216_init")]
-    partial class init
+    [Migration("20200605091217_quiz")]
+    partial class quiz
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,46 @@ namespace ADQuiz.Migrations
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ADQuiz.Answer", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("AnswerText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QuestionId");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("ADQuiz.Question", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CorrectAnswerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Difficulty")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
 
             modelBuilder.Entity("ADQuiz.User", b =>
                 {
@@ -39,6 +79,15 @@ namespace ADQuiz.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HighScore")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -115,15 +164,15 @@ namespace ADQuiz.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f55618ca-d7ac-4923-925b-c5543480658c",
-                            ConcurrencyStamp = "b92e9265-6f0a-44eb-bab5-c708b5c63a0c",
+                            Id = "050ee462-899f-48c1-922a-24a537871c95",
+                            ConcurrencyStamp = "3d69fa6f-20ff-47d6-9dde-c7acb1ad32fd",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "20f73189-a6a1-4ea5-8956-74285a7ab895",
-                            ConcurrencyStamp = "5402f7b8-3108-4230-8479-5b05eb421a09",
+                            Id = "9c825216-a8a2-4d88-ab98-904bc36ffcca",
+                            ConcurrencyStamp = "2694142f-6c9f-43f1-b8ba-3911fb716408",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -231,6 +280,13 @@ namespace ADQuiz.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ADQuiz.Answer", b =>
+                {
+                    b.HasOne("ADQuiz.Question", null)
+                        .WithMany("Answers")
+                        .HasForeignKey("QuestionId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
