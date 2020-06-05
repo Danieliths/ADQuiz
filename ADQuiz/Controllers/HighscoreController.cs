@@ -29,9 +29,9 @@ namespace ADQuiz
 
             if(user != null)
             {
-                if(HighScoreModel.HighScore > user.HighScore)
+                if(HighScoreModel.Score > user.HighScore)
                 {
-                    user.HighScore = HighScoreModel.HighScore;
+                    user.HighScore = HighScoreModel.Score;
                     context.Users.Update(user);
                     context.SaveChanges();
                 }

@@ -7,6 +7,6 @@ namespace ADQuiz
 {
     public class SetHighScoreRequest
     {
-        public int HighScore { get; set; }
+        public int Score { get; set; }
     }
 }
