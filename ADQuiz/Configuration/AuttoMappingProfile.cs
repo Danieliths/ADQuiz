@@ -16,6 +16,11 @@ namespace ADQuiz
                 .ForMember(dest => dest.Difficulty, opt => opt.MapFrom(src => src.Difficulty))
                 .ForMember(dest => dest.Answers, opt => opt.MapFrom(src => src.Answers))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id));
+
+            CreateMap<User, HighscoreHttpResponse>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.HighScore, opt => opt.MapFrom(src => src.HighScore));
+                
         }
     }
 }

@@ -8,6 +8,7 @@ import { Login } from './components/Login';
 import { createBrowserHistory } from 'history';
 import { AddQuestion } from './components/AddQuestion';
 import { Quiz } from './components/Quiz';
+import { Highscore } from './components/Highscore';
 import { authenticationService } from './Helpers'
 import './custom.css'
 
@@ -41,7 +42,8 @@ export default class App extends Component {
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/addquestion' component={AddQuestion} />
-		<Route exact path='/quiz' component={Quiz} />
+        <Route exact path='/quiz' component={Quiz} />
+        <Route exact path='/highscore' component={Highscore} />
         </Layout>
     );
   }

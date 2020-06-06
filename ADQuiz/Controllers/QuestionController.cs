@@ -40,7 +40,8 @@ namespace ADQuiz
                     new Answer { Id = correctAnswerId, AnswerText = modelQuestion.CorrectAnswer },
                     new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerOne },
                     new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerTwo },
-                    new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerThree }}
+                    new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerThree }
+                }
                 
 
             });

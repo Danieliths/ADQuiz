@@ -78,20 +78,17 @@ namespace ADQuiz.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("HighScore")
                         .HasColumnType("int");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -162,15 +159,15 @@ namespace ADQuiz.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "050ee462-899f-48c1-922a-24a537871c95",
-                            ConcurrencyStamp = "3d69fa6f-20ff-47d6-9dde-c7acb1ad32fd",
+                            Id = "51e6f0aa-46bb-4c41-bd80-9597249f553b",
+                            ConcurrencyStamp = "53a33ec0-e6a3-434a-94f2-77b803514e0a",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "9c825216-a8a2-4d88-ab98-904bc36ffcca",
-                            ConcurrencyStamp = "2694142f-6c9f-43f1-b8ba-3911fb716408",
+                            Id = "b8fb3d60-b4ad-4575-9be0-bc7263317952",
+                            ConcurrencyStamp = "52956e29-83c3-41d0-a6ee-c130fbe93e9b",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

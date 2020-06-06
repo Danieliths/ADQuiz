@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ADQuiz.Migrations
 {
-    public partial class quiz : Migration
+    public partial class ADQuiz : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,8 +40,7 @@ namespace ADQuiz.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     HighScore = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -192,12 +191,12 @@ namespace ADQuiz.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "050ee462-899f-48c1-922a-24a537871c95", "3d69fa6f-20ff-47d6-9dde-c7acb1ad32fd", "User", "USER" });
+                values: new object[] { "51e6f0aa-46bb-4c41-bd80-9597249f553b", "53a33ec0-e6a3-434a-94f2-77b803514e0a", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9c825216-a8a2-4d88-ab98-904bc36ffcca", "2694142f-6c9f-43f1-b8ba-3911fb716408", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "b8fb3d60-b4ad-4575-9be0-bc7263317952", "52956e29-83c3-41d0-a6ee-c130fbe93e9b", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",
