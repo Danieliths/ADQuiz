@@ -18,6 +18,7 @@ export class Highscore extends Component {
                     <tr>
                         <th>UserName</th>
                         <th>Score</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@ export class Highscore extends Component {
                         <tr key={highscoreList.highScore}>
                             <td>{highscoreList.userName}</td>
                             <td>{highscoreList.highScore}</td>
+                            <td>{highscoreList.highScoreTime}</td>
                         </tr>
                     )}
                 </tbody>

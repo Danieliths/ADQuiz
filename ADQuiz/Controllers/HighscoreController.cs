@@ -35,6 +35,7 @@ namespace ADQuiz
                 if(HighScoreModel.Score > user.HighScore)
                 {
                     user.HighScore = HighScoreModel.Score;
+                    user.HighScoreTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                     context.Users.Update(user);
                     context.SaveChanges();
                 }
@@ -46,7 +47,7 @@ namespace ADQuiz
         [IgnoreAntiforgeryToken]
         public IEnumerable<object> GetHighScore()
         {
-            return context.Users.OrderByDescending(o => o.HighScore).Select(q => mapper.Map<HighscoreHttpResponse>(q)).ToList();
+            return context.Users.OrderByDescending(o => o.HighScore).ThenBy(o => o.HighScoreTime).Select(q => mapper.Map<HighscoreHttpResponse>(q)).ToList();
         }
 
     }
