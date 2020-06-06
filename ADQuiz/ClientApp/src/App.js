@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Router  } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
 import { Register } from './components/Register';
 import { Login } from './components/Login';
 import { createBrowserHistory } from 'history';
@@ -38,8 +36,6 @@ export default class App extends Component {
                   <Route exact path='/' component={Login} />
               }
         <Router history={history}></Router>
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/addquestion' component={AddQuestion} />
