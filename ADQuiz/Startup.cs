@@ -1,4 +1,5 @@
 using AutoMapper;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,8 +32,9 @@ namespace ADQuiz
                 opts.UseSqlServer(Configuration.GetConnectionString("sqlConnection")));
 
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
-            services.AddControllersWithViews();
-            services.AddMvc(options => {
+            services.AddControllersWithViews().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddMvc(options =>
+            {
                 options.Filters.Add(new ValidateAntiForgeryTokenAttribute());
             });
 

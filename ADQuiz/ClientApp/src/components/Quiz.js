@@ -27,30 +27,38 @@ export class Quiz extends Component {
     render() {
         let contents = "";
         if (!this.state.startQuiz) {
-            contents = <div className="text-center">
-                <Card body inverse color="info">
-                    <CardTitle><h1>Are You Ready To Quiz?</h1></CardTitle>
-                    <CardText><Button color="success" onClick={() => { this.setState({ startQuiz: true }) }}>Start Quiz!</Button></CardText>
-                </Card>
-            </div>;
+            contents = this.renderStartScreen()
         }
         else if (this.state.questionIndex < this.state.questions.length) {
             contents = this.renderQuestions(this.state.questions, this.state.questionIndex)
         }
         else if (this.state.questionIndex >= this.state.questions.length) {
-            contents = <div className="text-center">
-                <Card  body inverse color="info">
-                    <CardTitle><h1>Your score is: {this.state.score}</h1></CardTitle>
-                    <CardText><Button  color="success" onClick={() => this.SubmitScore(this.state.score)}>Submit score</Button></CardText>
-                    </Card>
-            </div>
+            contents = this.renderScoreScreen()
         }
         return (
             <div>
-                <h1 id="tabelLabel" >Questions</h1>
+                
                 {contents}
             </div>
         );
+    }
+
+    renderStartScreen() {
+        return <div className="text-center">
+            <Card body inverse color="info">
+                <CardTitle><h1>Are You Ready To Quiz?</h1></CardTitle>
+                <CardText><Button color="success" onClick={() => { this.setState({ startQuiz: true }) }}>Start Quiz!</Button></CardText>
+            </Card>
+        </div>;
+    }
+
+    renderScoreScreen() {
+        return <div className="text-center">
+            <Card body inverse color="info">
+                <CardTitle><h1>Your score is: {this.state.score}</h1></CardTitle>
+                <CardText><Button color="success" onClick={() => this.SubmitScore(this.state.score)}>Submit score</Button></CardText>
+            </Card>
+        </div>;
     }
 
     renderQuestions(questions, index) {
@@ -59,7 +67,7 @@ export class Quiz extends Component {
                <Card className="mx-auto" body inverse color="info">
                    <CardTitle><h3>Category: {questions[index].category}</h3></CardTitle>
                    <CardText >{questions[index].questionText}</CardText>
-                   {questions[index].answers.map((answer, answersIndex) => <Button className="mb-1 w-50 mx-auto" disabled={this.state.IsAnswered} color={this.state.buttonColors[answersIndex]} onClick={() => this.CheckAnswer(questions[index].id, answer.id, answersIndex)} >{answer.answerText}</Button>)}
+                   {questions[index].answers.map((answer, answersIndex) => <Button className="mb-1 w-50 mx-auto" disabled={this.state.IsAnswered} color={this.state.buttonColors[answersIndex]} onClick={() => this.CheckAnswer(questions[index].id, answer.answerText, answersIndex)} >{answer.answerText}</Button>)}
                    <Button className="mb-1 w-50 mx-auto" color="primary" disabled={!this.state.IsAnswered} onClick={() => this.RenderNextQuestion()}>Next Question</Button>
                </Card>
            </div>
@@ -87,10 +95,11 @@ export class Quiz extends Component {
        this.setState({ questions: response, loading: false })
     }
 
-    async CheckAnswer(questionId, answerId, buttonIndex) {
+    async CheckAnswer(questionId, answerText, buttonIndex) {
         let result = await fetch('/question/' + questionId).then((response) => response.json());
         let newButtonColors = this.state.buttonColors;
-        if (result.correctAnswer === answerId) {
+        
+        if (result.correctAnswer === answerText) {
             newButtonColors[buttonIndex] = "success"
             this.setState({ score: this.state.score + 1, buttonColors: newButtonColors })
 

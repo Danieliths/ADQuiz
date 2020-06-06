@@ -46,9 +46,14 @@ export class NavMenu extends Component {
                             <ul className="navbar-nav flex-grow">
                                 
                                 {userIsAdmin &&
-                                    <NavItem>
-                                        <NavLink tag={Link} className="text-dark" to="/addquestion">Add Question</NavLink>
-                                    </NavItem>
+                                    <React.Fragment>
+                                        <NavItem>
+                                            <NavLink tag={Link} className="text-dark" to="/addquestion">Add Question</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink tag={Link} className="text-dark" to="/showquestions">Show Questions</NavLink>
+                                        </NavItem>
+                                    </React.Fragment>
                                 }
                                 {currentUser &&
                                     <React.Fragment>

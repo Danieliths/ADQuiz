@@ -10,6 +10,7 @@ import { AddQuestion } from './components/AddQuestion';
 import { Quiz } from './components/Quiz';
 import { authenticationService } from './Helpers'
 import './custom.css'
+import { ShowQuestions } from './components/ShowQuestions';
 
 export const history = createBrowserHistory();
 export default class App extends Component {
@@ -41,7 +42,8 @@ export default class App extends Component {
         <Route exact path='/login' component={Login} />
         <Route exact path='/register' component={Register} />
         <Route exact path='/addquestion' component={AddQuestion} />
-		<Route exact path='/quiz' component={Quiz} />
+        <Route exact path='/quiz' component={Quiz} />
+        <Route exact path='/showquestions' component={ShowQuestions} />
         </Layout>
     );
   }

@@ -11,7 +11,7 @@ namespace ADQuiz
         public string Category { get; set; }
         public string Difficulty { get; set; }
         public string QuestionText { get; set; }
-        public string CorrectAnswerId { get; set; }
+        public string CorrectAnswer { get; set; }
         public virtual ICollection<Answer> Answers { get; set; }
     }
 }

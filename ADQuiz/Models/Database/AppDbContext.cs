@@ -18,6 +18,12 @@ namespace ADQuiz
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Question>()
+                        .HasMany(a => a.Answers)
+                        .WithOne(q => q.Question)
+                        .OnDelete(DeleteBehavior.Cascade);
+
+
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
 
