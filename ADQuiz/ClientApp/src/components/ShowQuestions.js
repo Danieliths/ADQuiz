@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Card } from 'reactstrap';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
@@ -99,7 +99,6 @@ export class ShowQuestions extends Component {
       return( 
    
       <div>
-          <h2>Register</h2>
           <Formik
               initialValues={{
                   difficulty: question.difficulty,
@@ -131,48 +130,49 @@ export class ShowQuestions extends Component {
                          }
                      );
               }}>
-              {props => (
+                  {props => (
+                      <Card color="info">
                   <Form>
-                      <div className="form-group">
-                          <label htmlFor="question">Question</label>
-                          <Field name="question" type="text" className={'form-control' + (props.errors.question && props.touched.question ? ' is-invalid' : '')} />
+                      <div className="form-group text-center">
+                          <label htmlFor="question">Question</label><br />
+                          <Field name="question" type="text" className="mb-1 w-80 mx-auto ${'form-control' + (props.errors.question && props.touched.question ? ' is-invalid' : '')}" />
                           <ErrorMessage name="question" component="div" className="invalid-feedback" />
                       </div>
-                      <div className="form-group">
-                          <label htmlFor="correctanswer">Correct Answer</label>
-                          <Field name="correctanswer" type="text" className={'form-control' + (props.errors.correctanswer && props.touched.correctanswer ? ' is-invalid' : '')} />
+                      <div className="form-group text-center">
+                          <label htmlFor="correctanswer">Correct Answer</label><br />
+                          <Field name="correctanswer" type="text" className="mb-1 w-80 mx-auto ${'form-control' + (props.errors.correctanswer && props.touched.correctanswer ? ' is-invalid' : '')}" />
                           <ErrorMessage name="correctanswer" component="div" className="invalid-feedback" />
                       </div>
-                      <div className="form-group">
-                          <label htmlFor="wronganswerone">Wrong Answer One</label>
-                          <Field name="wronganswerone" type="text" className={'form-control' + (props.errors.wronganswerone && props.touched.wronganswerone ? ' is-invalid' : '')} />
+                      <div className="form-group text-center">
+                          <label htmlFor="wronganswerone">Wrong Answer One</label><br />
+                          <Field name="wronganswerone" type="text" className="mb-1 w-80 mx-auto ${'form-control' + (props.errors.wronganswerone && props.touched.wronganswerone ? ' is-invalid' : '')}" />
                           <ErrorMessage name="wronganswerone" component="div" className="invalid-feedback" />
                       </div>
-                      <div className="form-group">
-                          <label htmlFor="wronganswertwo">Wrong Answer Two</label>
-                          <Field name="wronganswertwo" type="text" className={'form-control' + (props.errors.wronganswertwo && props.touched.wronganswertwo ? ' is-invalid' : '')} />
+                      <div className="form-group text-center">
+                          <label htmlFor="wronganswertwo">Wrong Answer Two</label><br />
+                          <Field name="wronganswertwo" type="text" className="mb-1 w-80 mx-auto ${'form-control' + (props.errors.wronganswertwo && props.touched.wronganswertwo ? ' is-invalid' : '')}" />
                           <ErrorMessage name="wronganswertwo" component="div" className="invalid-feedback" />
                       </div>
-                      <div className="form-group">
-                          <label htmlFor="wronganswerthree">Wrong Answer Three</label>
-                          <Field name="wronganswerthree" type="text" className={'form-control' + (props.errors.wronganswerthree && props.touched.wronganswerthree ? ' is-invalid' : '')} />
+                      <div className="form-group text-center">
+                          <label htmlFor="wronganswerthree">Wrong Answer Three</label><br />
+                          <Field name="wronganswerthree" type="text" className="mb-1 w-80 mx-auto ${'form-control' + (props.errors.wronganswerthree && props.touched.wronganswerthree ? ' is-invalid' : '')}" />
                           <ErrorMessage name="wronganswerthree" component="div" className="invalid-feedback" />
                       </div>
-                      <div>
+                      <div className="form-group text-center">
                           <Field as="select" name="difficulty">
                               <option value="easy">Easy</option>
                               <option value="medium">Medium</option>
                               <option value="hard">Hard</option>
                           </Field>
                       </div>
-                      <div>
+                      <div className="form-group text-center">
                           <Field as="select" name="category">
                               <option value="games">Games</option>
                               <option value="politics">Politics</option>
                               <option value="sport">Sport</option>
                           </Field>
                       </div>
-                      <div className="form-group">
+                      <div className="form-group text-center">
                           <button type="submit" className="btn btn-primary" disabled={props.isSubmitting}>Submit Changes</button>
                           {props.isSubmitting &&
                               <img alt="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -181,7 +181,8 @@ export class ShowQuestions extends Component {
                       {props.status &&
                           <div className={'alert alert-danger'}>{props.status}</div>
                       }
-                  </Form>
+                          </Form>
+                          </Card>
               )}
           </Formik>
            </div>

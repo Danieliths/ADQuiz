@@ -46,7 +46,7 @@ export default class App extends Component {
 		<Route exact path='/quiz' component={Quiz} />
         <Route exact path='/highscore' component={Highscore} />
         <Route exact path='/showquestions' component={ShowQuestions} />
-        </Layout>
+              </Layout>
     );
   }
 }

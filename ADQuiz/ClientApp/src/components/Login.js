@@ -18,10 +18,11 @@ class Login extends React.Component {
                         email: Yup.string().required('Email is required'),
                         password: Yup.string().required('Password is required')
                     })}
-                    onSubmit={({ email, password }, { setStatus, setSubmitting}) => {
+                    onSubmit={({ email, password }, { setStatus, setSubmitting, resetForm}) => {
                         setStatus();
                         login(email, password)
                             .then(
+                                resetForm(),
                                 this.props.history.push('/'),
                                 error => {
                                     setSubmitting(false);
