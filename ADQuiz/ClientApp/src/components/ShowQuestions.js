@@ -83,21 +83,19 @@ export class ShowQuestions extends Component {
         });
         this.setState({ editQuestion: true, question: result, wrongAnswers: array });
     }
-
      removeItemOnce(arr, value) {
-    var index = arr.indexOf(value);
-    if (index > -1) {
-        arr.splice(index, 1);
-    }
-    return arr;
+     var index = arr.indexOf(value);
+         if (index > -1) {
+             arr.splice(index, 1);
+         }
+         return arr;
 }
 
    renderQuestionToEdit(question, wrongAnswers) {
       
        console.log(question.id)
        
-      return( 
-   
+   return(
       <div>
           <Formik
               initialValues={{
@@ -185,9 +183,9 @@ export class ShowQuestions extends Component {
                           </Card>
               )}
           </Formik>
-           </div>
-          )
-    }
+      </div>
+       )
+   }
 
    async submitChange(question, correctanswer, wronganswerone, wronganswertwo, wronganswerthree, difficulty, category, questionid) {
         const requestOptions = {

@@ -37,7 +37,6 @@ export class Quiz extends Component {
         }
         return (
             <div>
-                
                 {contents}
             </div>
         );
@@ -71,7 +70,6 @@ export class Quiz extends Component {
                    <Button className="mb-1 w-50 mx-auto" color="primary" disabled={!this.state.IsAnswered} onClick={() => this.RenderNextQuestion()}>Next Question</Button>
                </Card>
            </div>
-
        );
     }
 
@@ -102,8 +100,6 @@ export class Quiz extends Component {
         if (result.correctAnswer === answerText) {
             newButtonColors[buttonIndex] = "success"
             this.setState({ score: this.state.score + 1, buttonColors: newButtonColors })
-
-
         }
         else {
             newButtonColors[buttonIndex] = "danger"
@@ -114,8 +110,7 @@ export class Quiz extends Component {
 
     RenderNextQuestion() {
         this.setState({ IsAnswered: false, questionIndex: this.state.questionIndex + 1, buttonColors: ["secondary", "secondary", "secondary", "secondary",] })
-    }
-    
+    }   
 } 
 
 
