@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADQuiz.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200606074705_ADQuiz")]
+    [Migration("20200606082319_ADQuiz")]
     partial class ADQuiz
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,8 +83,8 @@ namespace ADQuiz.Migrations
                     b.Property<int>("HighScore")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("HighScoreTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("HighScoreTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -164,15 +164,15 @@ namespace ADQuiz.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6c0d628d-7127-4f45-ae69-2a6447798ab8",
-                            ConcurrencyStamp = "c5deaed7-0d0d-4467-9060-325dd1878e39",
+                            Id = "cb48400c-b55a-4736-97e5-a359260d9e43",
+                            ConcurrencyStamp = "3dc7e6ad-0908-41e0-a932-9b3fbe695028",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4432f6a1-8a26-4951-a25f-5be38b50aef7",
-                            ConcurrencyStamp = "bb8630bd-d531-4fef-8069-8dfa93a14ce3",
+                            Id = "c6dae7cf-86f4-45ca-a4a3-5e536cb6e46a",
+                            ConcurrencyStamp = "254f9930-5030-462d-b13c-ec52ed3b71f5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

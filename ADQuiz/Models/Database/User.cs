@@ -10,6 +10,6 @@ namespace ADQuiz
     {
         public string Name { get; set; }
         public int HighScore { get; set; }
-        public DateTime HighScoreTime { get; set; }
+        public string HighScoreTime { get; set; }
     }
 }

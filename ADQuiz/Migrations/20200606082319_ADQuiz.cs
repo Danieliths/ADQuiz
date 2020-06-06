@@ -42,7 +42,7 @@ namespace ADQuiz.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     HighScore = table.Column<int>(nullable: false),
-                    HighScoreTime = table.Column<DateTime>(nullable: false)
+                    HighScoreTime = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,12 +192,12 @@ namespace ADQuiz.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "6c0d628d-7127-4f45-ae69-2a6447798ab8", "c5deaed7-0d0d-4467-9060-325dd1878e39", "User", "USER" });
+                values: new object[] { "cb48400c-b55a-4736-97e5-a359260d9e43", "3dc7e6ad-0908-41e0-a932-9b3fbe695028", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "4432f6a1-8a26-4951-a25f-5be38b50aef7", "bb8630bd-d531-4fef-8069-8dfa93a14ce3", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "c6dae7cf-86f4-45ca-a4a3-5e536cb6e46a", "254f9930-5030-462d-b13c-ec52ed3b71f5", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",

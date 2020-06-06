@@ -35,7 +35,7 @@ namespace ADQuiz
                 if(HighScoreModel.Score > user.HighScore)
                 {
                     user.HighScore = HighScoreModel.Score;
-                    user.HighScoreTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
+                    user.HighScoreTime = DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "  " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
                     context.Users.Update(user);
                     context.SaveChanges();
                 }
