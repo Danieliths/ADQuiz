@@ -1,5 +1,5 @@
 ﻿import React, { Component } from 'react';
-
+import { Table } from 'reactstrap';
 export class Highscore extends Component {
     static displayName = Highscore.name;
     constructor(props) {
@@ -13,7 +13,7 @@ export class Highscore extends Component {
 
     static renderHighscoreTable(highscoreList) {
         return (
-            <table className='table table-striped' aria-labelledby="tabelLabel">
+            <Table dark>
                 <thead>
                     <tr>
                         <th>UserName</th>
@@ -30,7 +30,7 @@ export class Highscore extends Component {
                         </tr>
                     )}
                 </tbody>
-            </table>
+            </Table>
         );
     }
 
