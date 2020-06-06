@@ -39,7 +39,8 @@ namespace ADQuiz
                     new Answer { Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.CorrectAnswer },
                     new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerOne },
                     new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerTwo },
-                    new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerThree }}
+                    new Answer{ Id = Guid.NewGuid().ToString(), AnswerText = modelQuestion.WrongAnswerThree }
+                }
                 
 
             });
@@ -70,7 +71,8 @@ namespace ADQuiz
         }
 
 
-        [HttpGet]
+       [HttpGet]
+       [Authorize]
        [IgnoreAntiforgeryToken]
        public IEnumerable<QuestionHttpResponse> GetQuestions()
        {
@@ -78,6 +80,7 @@ namespace ADQuiz
        }
 
         [HttpGet]
+        [Authorize]
         [IgnoreAntiforgeryToken]
         [Route("{id}")]
         public Question CheckAnswer(string id)
@@ -86,6 +89,7 @@ namespace ADQuiz
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrator")]
         [IgnoreAntiforgeryToken]
         [Route("{id}")]
         public IActionResult DeleteAnswer(string id)

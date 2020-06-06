@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ADQuiz.Migrations
 {
-    public partial class quiz : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,9 +40,9 @@ namespace ADQuiz.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    HighScore = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    HighScore = table.Column<int>(nullable: false),
+                    HighScoreTime = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -57,7 +57,7 @@ namespace ADQuiz.Migrations
                     Category = table.Column<string>(nullable: true),
                     Difficulty = table.Column<string>(nullable: true),
                     QuestionText = table.Column<string>(nullable: true),
-                    CorrectAnswerId = table.Column<string>(nullable: true)
+                    CorrectAnswer = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -186,18 +186,18 @@ namespace ADQuiz.Migrations
                         column: x => x.QuestionId,
                         principalTable: "Questions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "050ee462-899f-48c1-922a-24a537871c95", "3d69fa6f-20ff-47d6-9dde-c7acb1ad32fd", "User", "USER" });
+                values: new object[] { "8da2fcbc-436a-4516-b85d-e30e2daab747", "d025929f-04c0-44d5-a77c-dc85a2517ff3", "User", "USER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "9c825216-a8a2-4d88-ab98-904bc36ffcca", "2694142f-6c9f-43f1-b8ba-3911fb716408", "Administrator", "ADMINISTRATOR" });
+                values: new object[] { "bdc0dea6-0839-4cd8-9b86-75e3ff58c191", "4a30a309-85f6-4e0a-bcec-1702bd1caa36", "Administrator", "ADMINISTRATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Answers_QuestionId",

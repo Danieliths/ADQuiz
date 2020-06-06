@@ -78,13 +78,10 @@ namespace ADQuiz.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("HighScore")
                         .HasColumnType("int");
 
-                    b.Property<string>("LastName")
+                    b.Property<string>("HighScoreTime")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -92,6 +89,9 @@ namespace ADQuiz.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("nvarchar(256)")
@@ -162,15 +162,15 @@ namespace ADQuiz.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e4ab9a63-ba2e-40a4-9d46-a2461a64bc83",
-                            ConcurrencyStamp = "3ca83aa3-328c-4d7d-a1bf-ca96b867bd9d",
+                            Id = "8da2fcbc-436a-4516-b85d-e30e2daab747",
+                            ConcurrencyStamp = "d025929f-04c0-44d5-a77c-dc85a2517ff3",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "93e6dab4-9462-4332-a07d-9a8554285edc",
-                            ConcurrencyStamp = "1272f244-277f-471e-969c-d39b6661fa06",
+                            Id = "bdc0dea6-0839-4cd8-9b86-75e3ff58c191",
+                            ConcurrencyStamp = "4a30a309-85f6-4e0a-bcec-1702bd1caa36",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

@@ -10,19 +10,19 @@ class Register extends React.Component {
                 <Formik
                     initialValues={{
                         email: '',
-                        firstName: '',
+                        name: '',
                         password: '',
                         confirmPassword: '',
                         role: 'User'
                     }}
                     validationSchema={Yup.object().shape({
-                        username: Yup.string().required('Username is required'),
+                        name: Yup.string().required('Name is required'),
                         password: Yup.string().required('Password is required'),
                         confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
                     })}
-                    onSubmit={({ username, password, email, role }, { setStatus, setSubmitting }) => {
+                    onSubmit={({ name, password, email, role }, { setStatus, setSubmitting }) => {
                         setStatus();
-                        register(username, password, email, role)
+                        register(name, password, email, role)
                             .then(
                                 this.props.history.push('/login'),
                                 error => {
@@ -34,13 +34,13 @@ class Register extends React.Component {
                     {props => (
                         <Form>
                             <div className="form-group">
-                                <label htmlFor="username">Username</label>
-                                <Field name="username" type="text" className={'form-control' + (props.errors.username && props.touched.username ? ' is-invalid' : '')} />
-                                <ErrorMessage name="username" component="div" className="invalid-feedback" />
+                                <label htmlFor="name">Name</label>
+                                <Field name="name" type="text" className={'form-control' + (props.errors.name && props.touched.name ? ' is-invalid' : '')} />
+                                <ErrorMessage name="name" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
-                                <Field name="email" type="text" className={'form-control' + (props.errors.username && props.touched.username ? ' is-invalid' : '')} />
+                                <Field name="email" type="text" className={'form-control' + (props.errors.email && props.touched.email ? ' is-invalid' : '')} />
                                 <ErrorMessage name="email" component="div" className="invalid-feedback" />
                             </div>
                             <div className="form-group">
@@ -76,11 +76,11 @@ class Register extends React.Component {
     }
 }
 
-function register(username, password, email, role) {
+function register(name, password, email, role) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, email, role })
+        body: JSON.stringify({ name, password, email, role })
     };
 
     return fetch('/register', requestOptions)
